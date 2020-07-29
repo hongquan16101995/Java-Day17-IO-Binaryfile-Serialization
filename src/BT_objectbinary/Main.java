@@ -21,10 +21,33 @@ public class Main {
             System.err.println(ioe.getMessage());
         }
 
-        List<Product> productList1;
         try {
-            productList1 = readBinary();
-            for (Product product : productList1) {
+            productList = readBinary();
+            for (Product product : productList) {
+                System.out.println(product);
+            }
+        } catch (IOException | ClassNotFoundException ioe) {
+            System.err.println(ioe.getMessage());
+        }
+
+        System.out.println("After fixed: ");
+        for (Product product : productList){
+            if(product.getPrice() == 10){
+                product.setCodeProduct(100);
+            }
+        }
+
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("product.txt"));
+            objectOutputStream.writeObject(productList);
+            objectOutputStream.close();
+        } catch (IOException ioe) {
+            System.err.println(ioe.getMessage());
+        }
+
+        try {
+            productList = readBinary();
+            for (Product product : productList) {
                 System.out.println(product);
             }
         } catch (IOException | ClassNotFoundException ioe) {
