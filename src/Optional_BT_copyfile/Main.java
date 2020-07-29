@@ -5,11 +5,11 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
         try {
-            InputStream inputStream = new BufferedInputStream(new FileInputStream(new File("text1")));
+            InputStream inputStream = new BufferedInputStream(new FileInputStream(new File("product.txt")));
             OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(new File("text2")));
-            int read;
+            byte read;
             int count = 0;
-            while ((read = inputStream.read()) != -1) {
+            while ((read = (byte)inputStream.read()) != -1) {
                 outputStream.write(read);
                 count++;
             }
